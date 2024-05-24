@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ApplicationIcon>IconeOF.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="Views\MainView.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\MainView.axaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\AboutIcon.png" />
+    <None Remove="Assets\Book.png" />
+    <None Remove="Assets\ConfigIcon.png" />
+    <None Remove="Assets\Downloading.png" />
+    <None Remove="Assets\Error.png" />
+    <None Remove="Assets\Expander.png" />
+    <None Remove="Assets\FSRlogo.ico" />
+    <None Remove="Assets\FSRlogo.png" />
+    <None Remove="Assets\Github.png" />
+    <None Remove="Assets\GradientOF.png" />
+    <None Remove="Assets\Homee.png" />
+    <None Remove="Assets\IconeOF.ico" />
+    <None Remove="Assets\iconTop.png" />
+    <None Remove="Assets\index.png" />
+    <None Remove="Assets\InglesBanner.png" />
+    <None Remove="Assets\LinguagemIcon.png" />
+    <None Remove="Assets\Loading.gif" />
+    <None Remove="Assets\LukeFz.png" />
+    <None Remove="Assets\Menu.png" />
+    <None Remove="Assets\pallete.png" />
+    <None Remove="Assets\Patreon.png" />
+    <None Remove="Assets\Search.png" />
+    <None Remove="Assets\Successfully.png" />
+    <None Remove="Assets\Tema1.png" />
+    <None Remove="Assets\tema2.png" />
+    <None Remove="Assets\tema3.png" />
+    <None Remove="Assets\TemaIcon.png" />
+    <None Remove="Assets\Website.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="IconeOF.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AnimatedImage.Avalonia" Version="1.0.7" />
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Direct2D1" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
+    <!-- Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration. -->
+    <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
+    <PackageReference Include="MessageBoxSlim.Avalonia" Version="0.9.8" />
+    <PackageReference Include="Nlnet.Avalonia.DevTools" Version="1.0.1-beta.15" />
+    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+    <!-- Adicionar pacotes problemáticos explicitamente para resolver conflitos de versão -->
+    <PackageReference Include="System.Net.Sockets" Version="4.3.0" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LibModAuth">
+      <HintPath>..\..\..\DLL\LibModAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

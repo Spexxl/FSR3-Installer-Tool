@@ -1,0 +1,931 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:Installer_linux_2.ViewModels"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:views="clr-namespace:Installer_linux_2.Views"
+		x:Class="Installer_linux_2.Views.MainWindow"
+		Icon="/Assets/IconeOF.ico"
+		xmlns:anim="https://github.com/whistyun/AnimatedImage.Avalonia"
+		xmlns:avalonia="using:Avalonia.Controls"
+		xmlns:avalonia.media.transformations="using:Avalonia.Media.Transformations"
+		Title="Fsr3 Installer" Width="900" Height="550 "
+		ExtendClientAreaToDecorationsHint="True"
+		ExtendClientAreaChromeHints="Default"
+		TransparencyLevelHint="AcrylicBlur"
+		Background="#161717"
+		ExtendClientAreaTitleBarHeightHint="-1">
+
+
+
+
+	<!-- Conteúdo do seu aplicativo -->
+	<Grid Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+		<!-- TextBox1 -->
+		
+		
+	<StackPanel>
+		<Canvas Margin="5,0,0,0">
+		
+		<!--Area central inicio-->
+		
+		
+			<TextBlock Text="Game Directory" 
+					 FontSize="18"
+					 Name="SelectGameDirectoryText"
+					 HorizontalAlignment="Center"
+					 TextAlignment="Center" 
+					 Margin="264,-310,0,10"
+					 Foreground="White"/>
+
+			 <TextBox Watermark="Select Game Directory" 
+					Margin="100,-465,100,10"
+					Width="450"
+					Height="35"
+					Foreground="#929292"
+					Background="#232323"
+					BorderBrush="#525252"
+					FontSize="13"
+					x:Name="Gamedirect"
+					CornerRadius="20"/>
+
+		
+		<!-- Browse Button -->
+		
+	 
+	<Button	Name="BrowseButton"
+			FontStretch="UltraExpanded"
+			FontSize="19"
+			Width="52"
+			Height="38"
+			Margin="500,-475,100,0"
+			HorizontalAlignment="Right"
+			CornerRadius="30"
+			Background="#636363"
+			Click="BrowseButton_Click"
+			BorderBrush="#636363"
+			Opacity="6">
+		<Image Source="/Assets/Search.png"/>
+	</Button>  
+			
+		<TextBlock Text="Select a Game"
+					   FontSize="18"
+					   Foreground="White"
+					   Margin="270,-160,0,0"
+					   Name="SelectGameText"
+					   HorizontalAlignment="Center">
+			</TextBlock>
+		
+	<!-- Lista de Jogos -->
+		
+		<StackPanel Margin="0,30" >
+			
+			
+			
+		<ComboBox Width="200"
+				  Height="35"
+				  Margin="233,-150,0,0"
+				  Background="#232323"
+				  HorizontalAlignment="Center"
+				  VerticalAlignment=""
+				  CornerRadius="20"
+				  BorderBrush="#525252"
+				  x:Name="gamecombobox"
+				  Foreground="White">
+
+
+			
+		</ComboBox>
+	</StackPanel>
+</Canvas>
+		
+		
+		<Canvas Margin="0,-12,0,0"> <!--inicio barra dos botoes-->
+			<Border Background="#242424" Width="600" Height="75" ZIndex=""
+					Margin="40,0,0,0"
+					BorderThickness="0.5"
+					Name="BoxButtons"
+					CornerRadius="35"/>
+		</Canvas> <!--final barra dos botoes-->
+		
+		
+		
+		<!-- Apply Button -->
+		<Button Content="Install"
+				Name="ApplyButton"
+				Width="160"
+				Height="48"
+				CornerRadius="30"
+				FontSize="20"
+				Foreground="White"
+				Background="#2EAFE1"
+				BorderBrush="#313131"
+				BorderThickness="0.5"
+				Margin="10,0,0,75"
+				Click="ApplyButton_Click"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center">
+		</Button>
+
+		<!--Uninstall Button-->
+
+		
+		<Canvas Margin="0,3,0,0">
+		<Button Content="Uninstall"
+				Width="160"
+				Name="UninstallButton"
+				Height="48"
+				CornerRadius="30"
+				FontSize="20"
+				BorderBrush="#313131"
+				BorderThickness="0.5"
+				Foreground="White"
+				Background="#636363"
+				Margin="80,-125,0,100"
+				Click="UninstallButton_Click"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom">
+		</Button>
+		</Canvas>
+		
+		<Canvas Margin="600,-520,0,0" IsVisible="">
+			<Button x:Name="DropDown"
+					IsVisible="False"
+					Click="DropDown_Click"
+					HorizontalAlignment="Center"
+					VerticalAlignment=""
+					Height=""
+					Width="218"
+					Background="#343333"
+					CornerRadius="30"
+					MaxHeight="28">
+
+				<Image Source="/Assets/SubMenuDOWN.png"  Width="24" Height="24" Stretch="Uniform"/>
+			</Button>
+		</Canvas>	
+	</StackPanel>
+		
+		
+		
+		<!--SubMenu-->
+			
+		
+	<Canvas ZIndex="-1" Name="CanvaSubMenu">
+		<SplitView IsPaneOpen="False"
+				   PanePlacement="Right"
+				   OpenPaneLength="400"
+				   Width="252"
+				   Name="Split_SubMenu"
+				   Height="330"
+				   Margin="496,-390,0,0"
+				   CompactPaneLength="30"
+				   Background="Transparent"
+				   DisplayMode="CompactInline">
+		<SplitView.Pane>		
+		<Border Name="background_SubMenu">
+
+		<Canvas x:Name="submenuPANEL" Margin="31,10,0,0"> 
+			
+				<!--Inicio Split Open Button-->
+				<Canvas Margin="-27,75,0,0" Background="Transparent">
+					
+					<Border CornerRadius="30"
+							Margin="0"
+							Width="80"
+							Background="#2B2A2A"
+							Height="170">
+						
+						<Button CornerRadius="30"
+								Width="80"
+								Name="ExpanderButton"
+								Margin="0,0,0,0"
+								Click="Expander_SubMenu_Click"
+								Background="Transparent"
+								Height="170">
+							
+							<Image Source="avares://Installer linux 2/Assets/Expander.png"
+								   Width="25"
+								   Name="icon_Expander"
+								   Margin="-44,0,0,0"
+								   Height="25">
+								
+	
+							</Image>
+						</Button>
+								
+						
+						
+								
+							
+					</Border>
+				</Canvas>
+				<!--FIM Split Open Button-->
+			
+			<!-- ScrollViewer com um StackPanel -->
+			<Border CornerRadius="30" Name="SubmenuBackground"
+					Background="#242424" Padding="5">
+				
+				<ScrollViewer VerticalScrollBarVisibility="Auto"
+							  HorizontalAlignment="Right"
+							  Height="305" CornerRadius="30">
+					
+					<StackPanel Width="210" Height="1320">
+						
+						<!-- Conteúdo do StackPanel -->
+						
+						<TextBlock Text="Options"
+								   Margin="62,5,0,0"
+								   Foreground="White"
+								   Name="OptionsText"
+								   FontSize="18"/>
+							<TextBlock Text=" ___________________________" Margin="6,-0,0,0" Foreground="White"/>
+						
+						<!--FakeGpu-->
+						
+						<TextBlock Text="Fake Gpu" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+								<ToggleSwitch  x:Name="FakeGpuSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+						
+						<!--Disable FG-->
+						
+						<TextBlock Text="Disable FG" Name="DisableFgText" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   x:Name="DisableFgSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+						
+						<!--Unreal AMD-->
+						
+						<TextBlock Text="Unreal Amd" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   x:Name="UnrealAmdSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+						
+						<!--Nvngx_Stub-->
+						
+						<TextBlock Text="Nvngx" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   Name="NVNGX_Stub" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+
+						<!--Dxgi-->
+
+						<TextBlock Text="Dxgi Dll" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   Name="DxgiSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+						
+						
+						<!--Nvapi-->
+						
+						<TextBlock Text="Nvapi GTX" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   Name="NvapiSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+
+						<!--MacOS Crossover-->
+
+						<TextBlock Text="Mac OS " Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   Name="MacCrossoverSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+					
+
+						
+						<!--Debugger-->
+						
+						<TextBlock Text="Debugger" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   x:Name="DebuggerSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+						<!--CyberFsr-->
+						<TextBlock Text="Nvngx Dll" IsVisible="False" Margin="12,40,0,0" Foreground="White" FontSize="16"/>
+						<Button Content="Install" IsVisible="False"  Name="InstallNvngx" Click="NVNGX_Click" FontSize="13" Background="#06A8F6" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="30" Margin="108,-25,0,0" Width="80" Height="32"/>
+						<!--Epic Overlay-->
+						<TextBlock Text="Epic Overlay" Margin="12,30,0,0" Foreground="White" FontSize="15"/>
+						<Button Content="Disable"
+								 Name="DisableEpicOverlay" ToolTip.Tip=""  Click="EpicGamesOverlayButton_Click" FontSize="13" Background="#06A8F6" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="30" Margin="108,-25,0,0" Width="80" Height="32"/>
+						<!--O.P Mode-->
+						<TextBlock Text="O.P Mode" Name="OpModeTEXT" Margin="12,40,0,0" Foreground="White" x:Name="opmodeText" FontSize="15"/>
+						<ComboBox Background="Gray" x:Name="OpMode" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="30" Margin="95,-26,0,0" Width="95" Height="32" FontSize="12">
+						</ComboBox>
+						<!--Mod Version-->
+						<TextBlock Text="Mod Vers.." Margin="12,40,0,0" Foreground="White" FontSize="15"/>
+						<ComboBox Background="Gray" x:Name="ModVersionComboBox" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="30" Margin="95,-26,0,0" Width="95" Height="32" FontSize="12">
+						</ComboBox>
+						<!-- Edit Upscaling Area -->
+						<TextBlock Text="  Edit Upscaling"
+								    Name="EditUpscalingText" Margin="25,40,0,0" Foreground="White" FontSize="18"/>
+						<TextBlock Text=" ___________________________" Margin="6,-0,0,0" Foreground="White"/>
+						<!--Shaperness Slider-->
+						<TextBlock Text="Sharpness"
+								   Name="SharpnessText" Margin="12,30,0,0" Foreground="White" FontSize="15"/>
+						<Slider Width="90" Height="" x:Name="SharpnessSlider" Margin="65,-34,0,0" Minimum="0" Value="0" Maximum="1.0" TickFrequency="0.10"/>
+						<!--Fsr Ultra Quality-->
+						<TextBlock Text="FSR Ultra Quality"
+								   Name="FSRUltraQualityText " Margin="12,30,0,10" Foreground="White" FontSize="14"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,0">
+							<Button Content="-" Margin="2" Click="UltraQualityMinusButton_Click"/>
+							<TextBox x:Name="UltraQualityNumeric" Foreground="White" FontSize="15" Text="76" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
+							<Button Content="+" Margin="2" Click="UltraQualityPlusButton_Click"/>
+						</StackPanel>
+						<!--Fsr Quality-->
+						<TextBlock Text="FSR Quality"
+								   Name="FSRQualityText" Margin="12,30,0,10" Foreground="White" FontSize="14"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,0">
+							<Button Content="-" Margin="2" Click="QualityMinusButton_Click"/>
+							<TextBox x:Name="QualityNumeric" Foreground="White" FontSize="15" Text="66" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
+							<Button Content="+" Margin="2" Click="QualityPlusButton_Click"/>
+						</StackPanel>
+						<!--Fsr Balanced-->
+						<TextBlock Text="FSR Balanced"
+								   Name="FSRBalancedText" Margin="12,30,0,10" Foreground="White" FontSize="14"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,0">
+							<Button Content="-" Margin="2" Click="BalancedMinusButton_Click"/>
+							<TextBox x:Name="BalancedNumeric" Foreground="White" FontSize="15" Text="58" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
+							<Button Content="+" Margin="2" Click="BalancedPlusButton_Click"/>
+						</StackPanel>
+						<!--Fsr Performance-->
+						<TextBlock Text="FSR Performance" Margin="12,30,0,10" Foreground="White" FontSize="14"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,0">
+							<Button Content="-" Margin="2" Click="PerformanceMinusButton_Click"/>
+							<TextBox x:Name="PerformanceNumeric" Foreground="White" FontSize="15" Text="50" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
+							<Button Content="+" Margin="2" Click="PerformancePlusButton_Click"/>
+						</StackPanel>
+						<!--Fsr Ultra Performance-->
+						<TextBlock Text="FSR Ultra Performance" Margin="12,30,0,10" Foreground="White" FontSize="14"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,0">
+							<Button Content="-" Margin="2" Click="UltraPerformanceMinusButton_Click"/>
+							<TextBox x:Name="UltraPerformanceNumeric" Foreground="White" FontSize="15" Text="33" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"/>
+							<Button Content="+" Margin="2" Click="UltraPerformancePlusButton_Click"/>
+						</StackPanel>
+						<!-- Adicione mais conteúdo aqui se necessário -->
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+		</Canvas>
+		</Border>
+	</SplitView.Pane>	
+</SplitView>
+</Canvas><!--Fim Splitview Submenu-->
+		
+
+		
+	
+
+
+		<!--Barra Lateral-->
+		
+		
+		<!--Fundo Barra Lateral-->
+			<Canvas Background="#242424"
+					Width="68"
+					Name="BarraLateral"
+					Height="800"
+					Margin="-830,-600,0,0"
+					ZIndex="-2"/>
+			
+		
+		<Canvas Margin="-150,-430,0,0">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto"/>
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="21">
+
+
+				
+					<!--Home Button-->
+				
+					<Button Width="52"
+							Height="52"
+							HorizontalContentAlignment="Center"
+							Background="#2EAFE1"
+							CornerRadius="15"
+							Name="HomeButton"
+							Click="HomeButton_Click"
+							ToolTip.Tip="Home"
+							Margin="-13,30,0,0">		
+						<Image Source="/Assets/Homee.png" Margin="0,-10,0,0 " Stretch="Uniform"/>		
+					</Button>
+
+
+					<!--Config Button-->
+
+					<Button Width="52"
+							Height="52"
+							Name="ConfigButton"
+							HorizontalContentAlignment="Center"
+							Background="Transparent"
+							CornerRadius="15"
+							Click="ConfigButton_Click"
+							ToolTip.Tip="Options"
+							Margin="-13,10,0,0">
+
+					
+					
+						<Image Source="/Assets/ConfigIcon.png" Stretch="Uniform"/>
+					</Button>
+				
+				
+
+					<!--tema Button-->
+
+					<Button Width="52"
+							Height="52"
+							Name="TemaButton"
+							HorizontalContentAlignment="Center"
+							Background="Transparent"
+							Click="TemaButton_Click"
+							CornerRadius="15"
+							ToolTip.Tip="Appearance"
+							Margin="-13,235,0,0">
+						<Image Source="/Assets/pallete.png" Stretch="UniformToFill"/>
+					</Button>
+				
+
+
+					<!--About Button-->
+
+					<Button Width="52"
+							Height="52"
+							Name="AboutButton"
+							HorizontalContentAlignment="Center"
+							Background="Transparent"
+							Click="AboutButton_Click"
+							CornerRadius="15"
+							ToolTip.Tip="About"
+							Margin="-13,5,0,0">
+						<Image Margin="-2,1,0,0" Source="/Assets/AboutIcon.png" Stretch="Uniform"/>
+					</Button>
+				
+				
+				
+				
+			
+				</StackPanel>
+				
+			<SplitView IsPaneOpen="False" DisplayMode="Inline"
+					   Width="300"
+					   Grid.Column="2"
+					   OpenPaneLength="140"
+					   Name="split_index"
+					   Height="1000"
+					   Margin="-10,0,0,0"
+					   HorizontalContentAlignment="Left">
+				<SplitView.Pane>
+						<StackPanel Background="#242424">  <!--Conteudo do split-->
+						
+						</StackPanel>
+				</SplitView.Pane>
+				</SplitView>
+			</Grid>
+		</Canvas>
+		
+
+
+		<!--Painel de Config-->
+		<Canvas ZIndex="2">
+			<SplitView
+					   IsPaneOpen="False"
+					   x:Name="ConfigPanel"
+					   HorizontalAlignment="Left"
+					   OpenPaneLength="830"
+					   DisplayMode="Inline"
+					   Margin="-80,-390,0,0">
+				<SplitView.Pane>
+					
+						<Grid Height="520"
+							  Width="962"
+							  Name="ConfigPanelBackground"
+							  Background="#161717">
+							
+							<StackPanel Margin="70,20,0,0">
+								
+								<Border Background="#242424"
+										CornerRadius="50"
+										Name="BoxTextDownload"
+										Height="35"
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										Margin="-85,0,0,0"
+										Width="220">
+									<TextBlock Text="Mod Download"
+											   Name="ModDownloadText"	   
+											   Foreground="White"
+											   FontWeight="600"
+											   HorizontalAlignment="Center"
+											   VerticalAlignment="Center"
+											   FontSize="17"/>
+								 </Border>
+								
+									<!--Api Key-->
+								
+								<TextBlock Text="Api Key "
+										   FontSize="14"
+										   Name="ApiKeyText"
+										   FontWeight="300"
+										   Margin="270,30,0,-2"
+										   Foreground="White"/>
+								
+								<TextBox Watermark="Insert Api Key"
+													Margin="20,10,100,10"
+													Width="300"
+													Height="20"
+													x:Name="KeyDoUser"
+													Foreground="White"
+													Background="#545252"
+													BorderBrush="#999595"
+													BorderThickness="0.5"
+													CornerRadius="20"/>
+								
+								<!--Button de Login-->
+								
+								<Button Margin="570,-52,0,0"
+										Width="80"
+										VerticalContentAlignment="Center"
+										HorizontalContentAlignment="Center"
+										Height="35"
+										Content="Login"
+										Foreground="White"
+										Background="#444444"
+										FontSize=""
+										FontWeight="Bold"
+										CornerRadius="20"
+										Click="LoginModVersions_Click"/>
+
+
+								<!--Mod Version ComboBox-->
+
+								<TextBlock Text="Mod Version "
+										   Name="ModVersionText"
+										   Margin="275,30,0,0"
+										   FontSize="14"
+										   FontWeight="300"
+										   Background=""
+										   Foreground="White"/>
+
+								<ComboBox Margin="260,10,0,0"
+										  CornerRadius="20"
+										  Width="170"
+										  BorderThickness="0.5"
+										  x:Name="ComboBoxModVersionDownload"
+										  SelectedIndex="0"
+										  IsEnabled="False"
+										  Foreground="">
+									
+								
+								</ComboBox>
+													
+								<Button Margin="460,-33,0,0"
+										Width="100"
+										IsEnabled="False"
+										VerticalContentAlignment="Center"
+										HorizontalContentAlignment="Center"
+										Height="35"
+										x:Name="DawloadModVersionButton"
+										Content="Download"
+										Foreground="White"
+										Background="#4291CB"
+										FontSize=""
+										FontWeight="Bold"
+										CornerRadius="20"
+										Click="DawloadModVersionButton_Click"/>
+								
+								
+												
+								<TextBlock Text=" Api Key: "
+										   Margin="30,200,0,0"
+										   Name="GetApiText"
+										   Foreground="White"/>
+								
+								<Button Margin="100,-25,0,0"
+										Width="100"
+										VerticalContentAlignment="Center"
+										HorizontalContentAlignment="Center"
+										Height="30"
+										Content="Key"
+										Name="ApiKeyButton"
+										Foreground="White"
+										Background="#7525C6"
+										FontSize=""
+										FontWeight="Bold"
+										CornerRadius="20"
+										Click="GetApiKey_Click"/>		
+							</StackPanel>
+						</Grid>
+				</SplitView.Pane>
+			</SplitView>
+		</Canvas>
+
+		<!-- FIM Painel de Config-->
+
+
+		<!--Painel de About-->
+		<Canvas ZIndex="2">
+			<SplitView
+					   IsPaneOpen="False"
+					   x:Name="AboutPanel"
+					   HorizontalAlignment="Left"
+					   VerticalAlignment=""
+					   OpenPaneLength="830"
+					   DisplayMode="Inline"
+					   Margin="-80,-390,0,0">
+
+				<SplitView.Pane>
+					<Grid Height="520" Width="962" Background="#161717" Name="AboutBackground">
+						
+								<!-- Inicio Textos About-->
+						<StackPanel HorizontalAlignment="Center"
+									VerticalAlignment="Top"
+									Margin="50"> 
+							
+							<TextBlock Text="About This Tool:"
+									   FontSize="20"
+									   Name="AboutThisText"
+									   FontWeight="500"
+									   Foreground="White"
+									   Padding="130,0,0,0"/>
+
+							<TextBlock Text="
+									     A tool designed to simplify the FSR3 mod&#x0a;
+											installation process. This solution is designed&#x0a;
+											to suit both novice and experienced users,&#x0a;
+											offering a user-friendly interface and&#x0a;
+											comprehensive instructions for a hassle-free&#x0a;
+											experience. Say goodbye to tedious setup&#x0a;
+											procedures and hello to effortless game&#x0a;
+											enhancement with this installation tool."
+									   FontSize="17"
+									   FontWeight="400"
+									   Name="AboutContentText"
+									   Padding="-10,20,0,0"
+									   Foreground="#A5A5A5"/>
+
+							<TextBlock Text="Open Source"
+									   FontSize="20"
+									   Name="OpenSourceText"
+									   FontWeight="500"
+									   Foreground="White"
+									   Padding="145,20,0,90"/>
+
+							<Border CornerRadius="40"
+									Width="240"
+									Height="60"
+									Name="BoxAboutIcons"
+									Margin="20,0,0,0"
+									Background="#252525">	
+								
+								<StackPanel Orientation="Horizontal">
+									   <!--botao Github-->
+										<Button Background="Transparent" CornerRadius="35"
+												Padding="10,0,0,0" BorderThickness=""
+												Click="Github_Click"
+												Margin="25,0,0,0">
+										 
+											<Image Width="55" Height="55" Margin="-10,0,0,0"
+												   Stretch="" Source="avares://Installer linux 2/Assets/Github.png"/>
+										</Button> <!--Fim Github-->
+								
+								
+												<!--botao Patreon-->
+										<Button Background="Transparent" CornerRadius="35"
+												Padding="10,0,0,0" BorderThickness=""
+												Click="Patreon_Click"
+												Margin="10,0,0,0">
+										 
+											<Image Width="55" Height="55" Margin="-10,0,0,0"
+												   Stretch="" Source="avares://Installer linux 2/Assets/Patreon.png"/>
+										</Button> <!--Fim Patreon-->
+								
+								
+												<!--botao Website-->
+									<Button Background="Transparent" CornerRadius="35"
+											Padding="10,0,0,0" BorderThickness="2"
+											Click="Website_Click"
+											Margin="10,0,0,0">
+
+										<Image Width="55" Height="50" Margin="-10,0,0,0"
+											   Stretch="" Source="avares://Installer linux 2/Assets/Website.png"/>
+									</Button> <!--Fim Website-->
+									
+									
+								</StackPanel>
+							</Border>
+
+							
+							
+							
+						</StackPanel> <!-- Fim  About-->
+						
+					</Grid>
+				</SplitView.Pane>
+			</SplitView>
+		</Canvas>
+
+		<!-- FIM Painel de About-->
+
+   <!--Titulo-->
+
+		<TextBlock Text="FSR3 Installer"
+				   HorizontalAlignment="Center"
+				   Margin="58,-410,0,0"
+				   Name="AppTittle"
+				   Foreground="White"
+				   FontSize="13"/>
+
+		
+		
+		<!--SubMebus Themas e Idioma-->
+
+
+		
+		<!--Aparencia-->
+
+		<Canvas ZIndex="10">
+			<SplitView
+					   IsPaneOpen="False"
+					   HorizontalAlignment="Left"
+					   OpenPaneLength="260"
+					   Name="TemaPanel"
+					   DisplayMode="Inline"
+					   Background="Transparent"
+					   Margin="-50,-95,0,0">
+				<SplitView.Pane>
+					<Border Name="BackgroundThemes" Background="Transparent">
+					<Border Height="210" Width="260" Background="#333333"
+							Name="BackgroundTemas"
+							CornerRadius="35"
+							BorderThickness="1"
+							BorderBrush="#5D5D5D">
+						<StackPanel Margin="145,45,0,0">
+
+							<Canvas Margin="-110,-37,0,0">
+								<Border Width="190" Height="23" Background="#575757" CornerRadius="35"/>
+							</Canvas>
+								<TextBlock Text="Language"
+									   Name="IdiomaText"
+										 HorizontalAlignment="Left"
+										 VerticalAlignment="Center"
+										 Margin="-50,-35,0,0"
+										 Foreground="White"
+										 FontSize="16"/>
+
+
+							<StackPanel Margin="10,-24,0,0" Height="">
+
+						
+								<!--icone Ingles-->
+
+								<Canvas Margin="-100,28,0,0">
+									<Grid Height="40" Width="40">
+										<Image Source="avares://Installer linux 2/Assets/InglesBanner.png" Stretch="Uniform">
+
+										</Image>
+									</Grid>
+								</Canvas>
+								
+								<!--Opçao Ingles-->
+								
+								<Canvas>
+									<RadioButton Background="Transparent"
+												 GroupName="Group1"
+												 Name="IdiomaIngles"
+												 Checked="Ingles_Checked"
+												 Margin="-90,36,0,0"/>
+								</Canvas>
+
+
+
+						<Canvas Margin="-10,0">
+							
+								<!--icone Portugues-->
+
+								<Canvas Margin="20,0,0,0">
+									<Grid Height="40" Width="40">
+										<Image Source="avares://Installer linux 2/Assets/PortuguesBanner.png" Stretch="Uniform">
+
+										</Image>
+									</Grid>
+								</Canvas>
+
+
+								<!--Opçao Portugues-->
+
+								<Canvas>
+									<RadioButton Background="Transparent"
+												 GroupName="Group1"
+												 Name="IdiomaPortugues"
+												 Checked="Portugues_Checked"
+												 Margin="30,36,-0,0"/>
+								</Canvas>	
+							</Canvas>
+							
+							<!--Aparencia menu-->
+								
+							<Canvas Margin="-10,115">
+								<TextBlock Text="Theme"
+									   Name="ThemeText"
+										  HorizontalAlignment="Left"
+											VerticalAlignment="Center"
+										   Margin="-37,-42,0,0"
+										   Foreground="White"
+										   FontSize="15"/>
+
+								<TextBlock Text="_______________"
+											  HorizontalAlignment="Left"
+												VerticalAlignment="Center"
+											   Margin="-52,-35,0,0"
+											   Foreground="White"
+											   FontSize="11"/>
+								
+								
+					<Canvas Margin="-15,-20">
+							<!-- Opção 1 -->
+							
+							<Canvas Margin="-40,10">
+								
+								<Grid Height="20" Width="20" Margin="15,6">
+									<Border CornerRadius="50" Background="#161717"/>
+								</Grid>			
+									
+							<Canvas Margin="15,0,0,0">		
+								<RadioButton GroupName="Group2"
+											 Name="tema1"
+											 Checked="RadioButton1_Checked"
+											 Background="Transparent"
+											Margin="0,0,0,0"/>
+							</Canvas>				
+						</Canvas>
+								
+								<!-- Opção 2 -->
+							
+							<Canvas Margin="-5,10">	
+								<Grid Height="20" Width="20" Margin="15,6">
+									<Border CornerRadius="50" Background="White"/>
+								</Grid>				
+							<Canvas Margin="15,0,0,0">
+								
+									
+								
+								<RadioButton GroupName="Group2"
+											 Name="tema2"
+											 Checked="RadioButton2_Checked"
+											 Background="Transparent"
+											Margin="0,0,0,0"/>
+							</Canvas>	
+						</Canvas>				
+					</Canvas>
+							
+							</Canvas>
+							</StackPanel>
+						</StackPanel>
+					</Border>
+				</Border>
+				</SplitView.Pane>
+			</SplitView>
+		</Canvas>
+
+
+									
+								
+		<!--PopUp de Download-->
+		<Canvas Name="PopUpDownload"
+				ZIndex="1000"
+				IsVisible="False"
+				Margin="400,30,0,0"
+				Background="Transparent">
+
+			<StackPanel>
+				<Border Background="#242424"
+						CornerRadius="30"
+						Width="300" Height="60">
+
+					<Canvas>
+						<Image anim:ImageBehavior.AnimatedSource="avares://Installer linux 2/Assets/Loading.gif"
+							   Width="45"
+							   Height="45"
+							   Margin="20,5"/>
+					</Canvas>
+
+				</Border>
+				<Canvas>
+					<TextBlock Text="Downloading Version..." Foreground="White"
+							   FontSize="16"
+							   Margin="75,-40">
+					</TextBlock>
+				</Canvas>
+
+			</StackPanel>
+		</Canvas>			
+		<!-- FIM PopUp de Download-->	
+
+
+		
+	</Grid>
+</Window>

@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
+    One for Windows with net7.0-windows TFM, one for MacOS with net7.0-macos and one with net7.0 TFM for Linux.-->
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>IconeOF.ico</ApplicationIcon>
+    <AssemblyName>FSR3 Installer</AssemblyName>
+    <RootNamespace>FSR3_Installer</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="Codigo BackEnd\**" />
+    <Compile Remove="Codigo BackEnd\**" />
+    <EmbeddedResource Remove="Codigo BackEnd\**" />
+    <None Remove="Codigo BackEnd\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IconeOF.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AnimatedImage.Avalonia" Version="1.0.7" />
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Direct2D1" Version="11.0.10" />
+    <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
+    <PackageReference Include="MessageBoxSlim.Avalonia" Version="0.9.8" />
+    <PackageReference Include="Nlnet.Avalonia.DevTools" Version="1.0.1-beta.15" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Installer linux 2\Installer linux 2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LibModAuth">
+      <HintPath>C:\Users\SLL\Desktop\LibModAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
