@@ -26,7 +26,7 @@
 
 ## Reference
 
- - [Patreon](patreon.com/SpexxLorioh)
+ - [Patreon](https://patreon.com/SpexxLorioh)
  - [Website](https://fsr-3-tool-website.vercel.app)
 
 
