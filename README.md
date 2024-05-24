@@ -19,6 +19,7 @@
 ## Technologies Used
 
 - C#
+- NET 8
 - XAML
 - Avalonia UI
 
