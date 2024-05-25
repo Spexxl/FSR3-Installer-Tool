@@ -49,7 +49,7 @@ Example:
 ![App Screenshot](https://media.discordapp.net/attachments/1203076379885834280/1208572997011640432/image.png?ex=6651db90&is=66508a10&hm=dc5ab6cdb20440d6ffd200a3409b9345d774570145342c1c6b58443edaa651f5&=&format=webp&quality=lossless&width=492&height=648)
 ## App Screenshots
 
-- Dartk Theme
+- Dark Theme
 ![App Screenshot](https://uploadimage.org/i/imagem_2024-05-24_154856729.png)
 - Light Theme
 ![App Screenshot](https://uploadimage.org/i/imagem_2024-05-24_155025610.png)
