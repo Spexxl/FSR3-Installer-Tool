@@ -265,6 +265,13 @@
 							<ToggleSwitch   x:Name="UnrealAmdSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
 						</Canvas>
 						
+						<!--Ignore Ingame FG-->
+						
+						<TextBlock Text="Fix FG" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
+						<Canvas Margin="110,0,0,0">
+							<ToggleSwitch   x:Name="IgnoreIngameFGSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
+						</Canvas>
+						
 						<!--Nvngx_Stub-->
 						
 						<TextBlock Text="Nvngx" Margin="10,30,0,0" Foreground="White" FontSize="16"/>
@@ -302,7 +309,7 @@
 						<Canvas Margin="110,0,0,0">
 							<ToggleSwitch   x:Name="DebuggerSwitch" Margin="0,-25,10,0" Foreground="White"></ToggleSwitch>
 						</Canvas>
-						<!--CyberFsr-->
+						<!--Nvngx-->
 						<TextBlock Text="Nvngx Dll" IsVisible="False" Margin="12,40,0,0" Foreground="White" FontSize="16"/>
 						<Button Content="Install" IsVisible="False"  Name="InstallNvngx" Click="NVNGX_Click" FontSize="13" Background="#06A8F6" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="30" Margin="108,-25,0,0" Width="80" Height="32"/>
 						<!--Epic Overlay-->

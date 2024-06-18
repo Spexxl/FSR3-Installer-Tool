@@ -216,8 +216,9 @@ public partial class MainWindow : Window
                     break;
                 case "Dragons Dogma 2":
 
-                    FakeGpuSwitch.IsChecked = false;
+                    FakeGpuSwitch.IsChecked = true;
                     UnrealAmdSwitch.IsChecked = false;
+                    IgnoreIngameFGSwitch.IsChecked = true;
 
                     break;
                 case "Dying Light 2":
@@ -937,7 +938,9 @@ public partial class MainWindow : Window
                 $"fake_nvidia_gpu = {FakeGpuSwitch.IsChecked.GetValueOrDefault().ToString().ToLower()}\n" +
                 $"fake_nvapi_results = {NvapiSwitch.IsChecked.GetValueOrDefault().ToString().ToLower()}\n" +
                 $"amd_unreal_engine_dlss_workaround = {UnrealAmdSwitch.IsChecked.GetValueOrDefault().ToString().ToLower()}\n" +
-                $"macos_crossover_support = {MacCrossoverSwitch.IsChecked.GetValueOrDefault().ToString().ToLower()}\n\n" +
+                $"macos_crossover_support = {MacCrossoverSwitch.IsChecked.GetValueOrDefault().ToString().ToLower()}\n" +
+                $"ignore_ingame_frame_generation_toggle = {IgnoreIngameFGSwitch.IsChecked.GetValueOrDefault().ToString().ToLower()}\n" +
+                $"ignore_ingame_frame_generation_resources = {IgnoreIngameFGSwitch.IsChecked.GetValueOrDefault().ToString().ToLower()}\n\n" +
 
                 $"[logging] \n" +
                 $"disable_console = false \n\n" +
@@ -2176,6 +2179,7 @@ public partial class MainWindow : Window
             OpMode.Items.Add("fsr3");
             OpMode.Items.Add("dlss");
             OpMode.Items.Add("xess");
+            OpMode.Items.Add("none");
             OpMode.SelectedIndex = 0;
         }
         else
